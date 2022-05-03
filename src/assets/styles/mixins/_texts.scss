@@ -1,0 +1,29 @@
+@mixin text--regular {
+  font-family: var(--dcl-defualt-font-family, 'Arial');
+  font-weight: var(--dcl-font-weight-regular, 'regular');
+}
+
+@mixin text--bold {
+  font-family: var(--dcl-defualt-font-family, 'Arial');
+  font-weight: var(--dcl-font-weight-bold, 'bold');
+}
+
+@mixin text--paragraph {
+  @include text--regular;
+  font-size: var(--dcl-font-size-medium, 15px);
+}
+
+@mixin text--complementary {
+  @include text--regular();
+  font-size: var(--dcl-font-size-small, 12px);
+}
+
+@mixin text--title {
+  @include text--bold;
+  font-size: var(--dcl-font-size-big, 18px);
+}
+
+@mixin text--title-large {
+  @include text--bold;
+  font-size: var(--dcl-font-size-xbig, 24px);
+}

@@ -1,0 +1,81 @@
+* {
+  box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  &::selection {
+    background-color: var(--dcl-c-blue-100, #000);
+    color: var(--dcl-c-white, #fff)
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+html, body {
+  @include text--paragraph;
+
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+
+  background: var(--dcl-c-blue-100, #000);
+}
+
+#app {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.root-layout {
+  @include create-animation(
+    $name: 'appear-change-view',
+    $from: translateY(100px),
+    $to: translateY(-100px),
+    $duration-out: .2s
+  );
+
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  max-height: max(100vh, 100%);
+  padding: var(--dcl-spacing-medium, 16px);
+  width: 100vw;
+
+  &__modules {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    width: max(300px, 90vw);
+
+    @include breakpoint('tablet-pt') {
+      width: max(300px, 60vw);
+    }
+
+    @include breakpoint('desktop') {
+      width: max(300px, 40vw);
+    }
+
+    > * {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      flex: 1;
+    }
+  }
+}
+
+.is-loading {
+  @include spinner(60, 15, var(--dcl-c-blue-300));
+
+  animation-name: loading;
+  animation-duration: .8s;
+  animation-timing-function: var(--dcl-ease-out);
+  animation-fill-mode: forwards;
+}

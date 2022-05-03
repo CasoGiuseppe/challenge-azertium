@@ -1,0 +1,10 @@
+@import './unit';
+
+:root {
+    //- custom element spacing with base 8
+    --dcl-spacing-xsmall: #{px2rem(calc($base / 2))}; // 4
+    --dcl-spacing-small: #{px2rem($base)}; // 8
+    --dcl-spacing-medium: #{px2rem($base * 2)};// 16
+    --dcl-spacing-big: #{px2rem($base * 3)};// 24
+    --dcl-spacing-xbig: #{px2rem($base * 4)};// 32
+}
