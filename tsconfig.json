@@ -10,5 +10,16 @@
     {
       "path": "./tsconfig.vitest.json"
     }
-  ]
+  ],
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "paths": {
+      "@/*": [ "./*" ]
+    },
+    "types": [
+      "jest",
+      "node"
+    ]
+  }
 }
