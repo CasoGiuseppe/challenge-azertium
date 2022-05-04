@@ -1,7 +1,5 @@
 <template>
-  <section>
-    app
-  </section>
+  <section>app</section>
 </template>
 
 <script setup lang="ts">

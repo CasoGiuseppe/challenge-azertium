@@ -1,4 +1,4 @@
-export const GALLERY = [
+[
   {
     "albumId": 1,
     "id": 1,
