@@ -19,7 +19,7 @@ const mirage = new Server({
   routes() {
     this.namespace = import.meta.env.VITE_APP_API_URL;
 
-    // get all gallery items
+    // get all gallery items by album id
     this.get("/gallery/:album", (schema, request) => {
       return schema.db.gallery.where({ albumId: request.params.album })
     },
