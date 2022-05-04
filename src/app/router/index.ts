@@ -10,7 +10,7 @@ const router = createRouter({
       component: {},
 
       beforeEnter: async (to, from, next) => {
-        const res = await galleryServices.getAllGalleryItems();
+        const res = await galleryServices.getAllGalleryItems(2);
         console.log(res)
         next();
       },
