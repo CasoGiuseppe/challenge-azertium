@@ -12,7 +12,7 @@ import {
   CHANGE_GALLERY_ALBUM
 } from "./actions";
 
-export const usegalleryStore = defineStore({
+export const useGalleryStore = defineStore({
   id: "doctors",
   state: () => BASE_GALLERY_STORE,
 
