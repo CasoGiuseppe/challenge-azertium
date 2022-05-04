@@ -6,7 +6,12 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: {}
+      component: {},
+
+      beforeEnter: async (to, from, next) => {
+        // await doctorsServices.getAllDoctors()
+        next();
+      },
     }
   ]
 })
