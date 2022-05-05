@@ -16,7 +16,7 @@
     flex: 0 0 calc(100% / 2);
 
     background: var(--dcl-c-blue-100, #000);
-    outline: 1px solid var(--dcl-c-blue-300, #000);
+    outline: 1px solid var(--dcl-c-blue-200, #000);
     outline-offset: -1px;
 
     @include breakpoint('only-phone') {

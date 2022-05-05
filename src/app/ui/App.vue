@@ -11,7 +11,10 @@
           :list="galleryList"
         >
           <template #extras="{ extra }">
-            <PictureItem />
+            <PictureItem
+              :src="extra.url"
+              :alt="extra.title"
+            />
           </template>
         </component>
       </router-view>
