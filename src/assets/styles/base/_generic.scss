@@ -40,33 +40,29 @@ html, body {
     $duration-out: .2s
   );
 
-  align-items: center;
   display: flex;
   flex-direction: column;
-  max-height: max(100vh, 100%);
-  padding: var(--dcl-spacing-medium, 16px);
+  height: max(100vh, 100%);
+  overflow: hidden;
   width: 100vw;
 
+  @include breakpoint('tablet-pt') {
+    flex-direction: row;
+  }
+
   &__modules {
-    align-items: center;
     display: flex;
-    flex: 1;
-    justify-content: center;
-    width: max(300px, 90vw);
+    flex: 2;
+    overflow: auto;
+    background: red;
+  }
+
+  &__aside {
+    background: #fff;
+    flex: 0 0 calc(var(--dcl-spacing-xbig));
 
     @include breakpoint('tablet-pt') {
-      width: max(300px, 60vw);
-    }
-
-    @include breakpoint('desktop') {
-      width: max(300px, 40vw);
-    }
-
-    > * {
-      align-items: center;
-      display: flex;
-      justify-content: center;
-      flex: 1;
+      flex: 0 0 calc(var(--dcl-spacing-xbig) * 2);
     }
   }
 }
