@@ -11,7 +11,11 @@
           :list="galleryList"
         >
           <template #extras="{ extra }">
-            <PictureItem :src="extra.url">
+            <PictureItem
+              :id="extra.id"
+              :src="extra.url"
+              @handleClick="test"
+            >
               <template #caption>
                 {{ extra.title }}
               </template>
@@ -36,6 +40,7 @@
   const galleryRefs = storeToRefs(useGallery);
   const galleryList = galleryRefs[GET_GALLERY_LIST];
 
+  const test = (id) => { console.log(id) }
 </script>
 
 <style lang="scss" src="@/assets/styles/index.scss" />
