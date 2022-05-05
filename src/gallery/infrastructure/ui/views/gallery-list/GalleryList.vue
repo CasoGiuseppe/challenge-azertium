@@ -8,10 +8,12 @@
     >
     <template v-if="list.length > 0">
       <li
-        v-for="(item, index) in list"
-        :key="item.id"
+        v-for="(extra, index) in list"
+        :key="extra.id"
         :style="{ transitionDelay: `${ (index) * 0.1 }s`}"
-      >{{ item.id }}</li>
+      >
+        <slot :extra="extra" name="extras" />
+      </li>
     </template>
   </transition-group>
 </template>

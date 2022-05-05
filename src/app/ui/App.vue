@@ -5,9 +5,16 @@
     </aside>
 
     <section class="root-layout__modules">
-      <router-view
-        :list="galleryList"
-      ></router-view>
+      <router-view v-slot="{ Component }">
+        <component
+          :is="Component"
+          :list="galleryList"
+        >
+          <template #extras="{ extra }">
+            <PictureItem />
+          </template>
+        </component>
+      </router-view>
     </section>
   </section>
 </template>
@@ -16,6 +23,7 @@
   import { storeToRefs } from "pinia";
   import { useGalleryStore } from "@/gallery/stores/gallery";
   import { GET_GALLERY_LIST } from "@/gallery/stores/gallery/getters"
+  import PictureItem from "@/app/ui/components/picture-item/PictureItem.vue"
 
   const useGallery = useGalleryStore();
   const galleryRefs = storeToRefs(useGallery);
