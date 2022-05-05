@@ -14,7 +14,8 @@
             <PictureItem
               :id="extra.id"
               :src="extra.url"
-              @handleClick="test"
+              :isDisabled="extra.deleted"
+              @handleClick="setDeletedState"
             >
               <template #caption>
                 {{ extra.title }}
@@ -34,6 +35,7 @@
   import { storeToRefs } from "pinia";
   import { useGalleryStore } from "@/gallery/stores/gallery";
   import { GET_GALLERY_LIST } from "@/gallery/stores/gallery/getters"
+  import { CHANGE_GALLERY_DELETED_ITEM } from "@/gallery/stores/gallery/actions"
 
   import { DICTIONARY_LABELS } from "@/app/helpers/constants"
   import PictureItem from "@/app/ui/components/picture-item/PictureItem.vue"
@@ -42,7 +44,7 @@
   const galleryRefs = storeToRefs(useGallery);
   const galleryList = galleryRefs[GET_GALLERY_LIST];
 
-  const test = (id) => { console.log(id) }
+  const setDeletedState = (id) => useGallery[CHANGE_GALLERY_DELETED_ITEM]({ value : id })
 </script>
 
 <style lang="scss" src="@/assets/styles/index.scss" />

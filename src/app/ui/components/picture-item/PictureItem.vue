@@ -1,5 +1,10 @@
 <template>
-  <figure class="picture-item">
+  <figure
+    :class="[
+      isDisabled ? 'picture-item--is-disabled' : null,
+      'picture-item'
+    ]"
+  >
     <img :src="src" />
 
     <figcaption
@@ -24,11 +29,13 @@
   interface Props {
       id: string;
       src: string;
+      isDisabled: boolean
     }
 
   const props = withDefaults(defineProps<Props>(), {
     id: 'id',
-    src: null
+    src: null,
+    isDisabled: false
   });
 
   const clickEmit = defineEmits(["handleClick"]);

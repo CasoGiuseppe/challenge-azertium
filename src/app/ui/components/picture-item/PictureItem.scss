@@ -5,6 +5,29 @@
   position: relative;
   overflow: hidden;
 
+  &--is-disabled {
+    &::before {
+      @include keyAnimation(appear) {
+        0% { background: hsla(0, 100%, 0%, 0); }
+        100% { background: hsla(0, 100%, 0%, .7); }
+      };
+
+      height: 100%;
+      left: 50%;
+      top: 50%;
+      position: absolute;
+      width: 100%;
+
+      transform: translateX(-50%) translateY(-50%);
+      content: '';
+
+      animation-name: appear;
+      animation-duration: .6s;
+      animation-timing-function: --sm-ease-out;
+      animation-fill-mode: forwards;
+    }
+  }
+
   &__caption {
     @include text--paragraph;
 
@@ -29,6 +52,7 @@
     @include text--complementary;
 
     top: var(--dcl-spacing-small, 4px);
+    padding: var(--dcl-spacing-xsmall, 4px) var(--dcl-spacing-medium, 4px);
     position: absolute;
     right: var(--dcl-spacing-small, 4px);
 
@@ -53,8 +77,10 @@
 
   &:hover {
     @include breakpoint('tablet-ld') {
-      #{$pictureitem}__caption {
-        transform: translateY(0);
+      &:not(#{$pictureitem}--is-disabled) {
+        #{$pictureitem}__caption {
+          transform: translateY(0);
+        }
       }
     }
   }

@@ -3,9 +3,10 @@
 
   @include create-animation(
     $name: 'appear-gallery-item',
-    $from: translateY(50%),
-    $to: translateY(-50%),
+    $from: translateY(50px),
+    $to: translateY(-50px),
     $duration: .3s,
+    $duration-out: .2s
   );
 
   display: flex;
