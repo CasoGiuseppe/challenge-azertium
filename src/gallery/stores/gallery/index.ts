@@ -18,7 +18,7 @@ export const useGalleryStore = defineStore({
 
   actions: {
     [CHANGE_GALLERY_LIST]({ value }: { value: Gallery[] }): void {
-      this.gallery = [...this.gallery, value] as any;
+      this.gallery = Object.assign(this.gallery, value)
     },
 
     [CHANGE_GALLERY_ALBUM](): void {

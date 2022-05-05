@@ -11,7 +11,7 @@
         v-for="(item, index) in list"
         :key="item.id"
         :style="{ transitionDelay: `${ (index) * 0.1 }s`}"
-      >index</li>
+      >{{ item.id }}</li>
     </template>
   </transition-group>
 </template>
@@ -27,7 +27,4 @@
 
   const outLeaveEvent = (e: any) => e.removeAttribute("style");
 </script>
-  
-<style>
-  
-</style>
+<style lang="scss" src="./GalleryList.scss" />

@@ -5,7 +5,18 @@
     $name: 'appear-gallery-item',
     $from: translateY(50%),
     $to: translateY(-50%),
-    $duration: .6s,
+    $duration: .3s,
   );
 
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  > li {
+    flex: 0 0 calc(100% / 4);
+    
+    background: var(--dcl-c-blue-100, #000);
+    outline: 1px solid var(--dcl-c-blue-300, #000);
+    outline-offset: -1px;
+  }
 }
