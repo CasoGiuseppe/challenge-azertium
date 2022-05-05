@@ -20,7 +20,7 @@
                 {{ extra.title }}
               </template>
               <template #action>
-                delete
+                {{ DICTIONARY_LABELS.cta_delete }}
               </template>
             </PictureItem>
           </template>
@@ -34,6 +34,8 @@
   import { storeToRefs } from "pinia";
   import { useGalleryStore } from "@/gallery/stores/gallery";
   import { GET_GALLERY_LIST } from "@/gallery/stores/gallery/getters"
+
+  import { DICTIONARY_LABELS } from "@/app/helpers/constants"
   import PictureItem from "@/app/ui/components/picture-item/PictureItem.vue"
 
   const useGallery = useGalleryStore();

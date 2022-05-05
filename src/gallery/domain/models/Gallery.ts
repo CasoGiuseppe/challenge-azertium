@@ -6,4 +6,5 @@ export type Gallery = {
   url: string;
   thumbnailUrl: string;
   id: GalleryId;
+  deleted: boolean
 };

@@ -12,6 +12,7 @@ export const galleryRepository = {
         url: gallery.url,
         thumbnailUrl: gallery.thumbnailUrl,
         id: gallery.id,
+        deleted: false
       };
     });
   },
