@@ -1,0 +1,61 @@
+.picture-item {
+  $pictureitem: &;
+
+  display: flex;
+  position: relative;
+  overflow: hidden;
+
+  &__caption {
+    @include text--paragraph;
+
+    bottom: 0;
+    display: flex;
+    padding: var(--dcl-spacing-small, 8px);
+    min-height: 20%;
+    position: absolute;
+    width: 100%;
+
+    background: hsla(0, 100%, 0%, .3);
+    color: var(--dcl-c-white, #fff);
+
+    transition: transform .6s var(--dcl-ease-out, linear);
+
+    @include breakpoint('tablet-ld') {
+      transform: translateY(100%);
+    }
+  }
+
+  &__action {
+    @include text--complementary;
+
+    top: var(--dcl-spacing-small, 4px);
+    position: absolute;
+    right: var(--dcl-spacing-small, 4px);
+
+    background: var(--dcl-c-red-200, #000);
+    border-radius: var(--dcl-spacing-small, 4px);
+    box-shadow: 0px 4px 16px 4px hsla(218, 44%, 22%, .3);
+    color: var(--dcl-c-white, #fff);
+    text-transform: uppercase;
+
+    &:hover {
+      @include breakpoint('tablet-ld') {
+        cursor: pointer;
+      }
+    }
+  }
+
+  > img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  &:hover {
+    @include breakpoint('tablet-ld') {
+      #{$pictureitem}__caption {
+        transform: translateY(0);
+      }
+    }
+  }
+}

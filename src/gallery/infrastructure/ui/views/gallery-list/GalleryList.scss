@@ -1,0 +1,42 @@
+.gallery-list {
+  $gallerylist: &;
+
+  @include create-animation(
+    $name: 'appear-gallery-item',
+    $from: translateY(50%),
+    $to: translateY(-50%),
+    $duration: .3s,
+  );
+
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  > li {
+    flex: 0 0 calc(100% / 2);
+
+    background: var(--dcl-c-blue-100, #000);
+    outline: 1px solid var(--dcl-c-blue-200, #000);
+    outline-offset: -1px;
+
+    @include breakpoint('only-phone') {
+      flex: 0 0 calc(100% / 2);
+    }
+
+    @include breakpoint('tablet-pt') {
+      flex: 0 0 calc(100% / 3);
+    }
+
+    @include breakpoint('tablet-ld') {
+      flex: 0 0 calc(100% / 4);
+    }
+
+    @include breakpoint('desktop') {
+      flex: 0 0 calc(100% / 6);
+    }
+
+    @include breakpoint('large-desktop') {
+      flex: 0 0 calc(100% / 8);
+    }
+  }
+}
