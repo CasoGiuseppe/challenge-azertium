@@ -10,8 +10,10 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: {},
+      name: "root",
+      components: {
+        default: () => import("@/gallery/infrastructure/ui/views/gallery-list/GalleryList.vue"),
+      },
 
       beforeEnter: async (to, from, next) => {
         const galleryStore = useGalleryStore();

@@ -1,0 +1,11 @@
+.gallery-list {
+  $gallerylist: &;
+
+  @include create-animation(
+    $name: 'appear-gallery-item',
+    $from: translateY(50%),
+    $to: translateY(-50%),
+    $duration: .6s,
+  );
+
+}
