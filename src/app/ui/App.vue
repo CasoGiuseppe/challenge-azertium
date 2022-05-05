@@ -11,10 +11,14 @@
           :list="galleryList"
         >
           <template #extras="{ extra }">
-            <PictureItem
-              :src="extra.url"
-              :alt="extra.title"
-            />
+            <PictureItem :src="extra.url">
+              <template #caption>
+                {{ extra.title }}
+              </template>
+              <template #action>
+                delete
+              </template>
+            </PictureItem>
           </template>
         </component>
       </router-view>
