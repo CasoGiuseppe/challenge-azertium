@@ -46,6 +46,7 @@
               :src="extra.url"
               :isDisabled="extra.deleted"
               :data-index="extra.id"
+              :data-url="extra.url"
             >
               <template #caption>
                 {{ extra.title }}

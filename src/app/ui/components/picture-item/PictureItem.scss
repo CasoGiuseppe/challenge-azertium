@@ -2,10 +2,9 @@
   $pictureitem: &;
 
   display: flex;
+  min-height: calc(100vh / 4);
   position: relative;
   overflow: hidden;
-
-  background-color: var(--dcl-c-blue-300, #000);
 
   &--is-disabled {
     &::before {

@@ -30,7 +30,8 @@
 <script setup lang='ts'>
   import { computed } from "vue";
   import { storeToRefs } from "pinia";
-
+  import { fetchImage } from "@/app/helpers/fetch"
+  
   import { DICTIONARY_LABELS } from "@/app/helpers/constants";
   import { Observe } from "@/app/helpers/utilities/observer";
 
@@ -68,6 +69,7 @@
     obs.create({
       element: child,
       action: (): void => {
+        console.log(child)
         parseInt(index) === props.list.length - 1
           ? handleObserve()
           : null;
