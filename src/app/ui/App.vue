@@ -1,10 +1,17 @@
 <template>
   <section class="root-layout">
     <aside class="root-layout__aside">
-      aside
+      <router-link :to="{name: 'root'}">
+        home
+      </router-link>
+
+      <router-link :to="{name: 'deleted'}">
+        deleted
+      </router-link>
     </aside>
 
     <section class="root-layout__modules">
+      {{ }}
       <router-view v-slot="{ Component }">
         <component
           :is="Component"
@@ -39,18 +46,28 @@
 </template>
 
 <script setup lang="ts">
+  import { computed } from "vue";
   import { storeToRefs } from "pinia";
   import { useGalleryStore } from "@/gallery/stores/gallery";
-  import { GET_GALLERY_LIST } from "@/gallery/stores/gallery/getters"
+  import {
+    GET_GALLERY_LIST,
+    GET_GALLERY_DELETED_LIST,
+    GET_GALLERY_DELETED_STATE
+  } from "@/gallery/stores/gallery/getters"
   import { CHANGE_GALLERY_DELETED_ITEM } from "@/gallery/stores/gallery/actions"
-
+  
   import { DICTIONARY_LABELS } from "@/app/helpers/constants"
   import PictureItem from "@/app/ui/components/picture-item/PictureItem.vue"
   import BaseButton from "@/app/ui/components/base/base-button/BaseButton.vue"
 
   const useGallery = useGalleryStore();
   const galleryRefs = storeToRefs(useGallery);
-  const galleryList = galleryRefs[GET_GALLERY_LIST];
+  const galleryDeletedState = computed(() => galleryRefs[GET_GALLERY_DELETED_STATE].value)
+  const galleryList = computed(() => {
+    return galleryDeletedState.value
+      ? galleryRefs[GET_GALLERY_DELETED_LIST].value
+      : galleryRefs[GET_GALLERY_LIST].value
+  });
 
   const setDeletedState = (id) => useGallery[CHANGE_GALLERY_DELETED_ITEM]({ value: id })
 </script>

@@ -37,7 +37,6 @@ const router = createRouter({
 
           beforeEnter: async (to, from, next) => {
             const galleryStore = useGalleryStore();
-
             galleryStore[CHANGE_GALLERY_DELETED_STATE]({ value: true });
             next()
           }
@@ -46,5 +45,11 @@ const router = createRouter({
     }
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  const galleryStore = useGalleryStore();
+  if (to.name !== "deleted") galleryStore[CHANGE_GALLERY_DELETED_STATE]({ value: false });
+  next()
+})
 
 export default router;
