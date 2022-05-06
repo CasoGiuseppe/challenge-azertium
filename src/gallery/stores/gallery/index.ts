@@ -20,12 +20,12 @@ export const useGalleryStore = defineStore({
   state: () => BASE_GALLERY_STORE,
 
   actions: {
-    [CHANGE_GALLERY_LIST]({ value }: { value: Gallery[] }): void {
-      this.gallery = Object.assign(this.gallery, value)
+    [CHANGE_GALLERY_LIST]({ value }: { value: Gallery[] | any }): void {
+      this.gallery = [...this.gallery, value].flat()
     },
 
     [CHANGE_GALLERY_ALBUM](): void {
-      this.album + 1
+      this.album = this.album + 1
     },
 
     [CHANGE_GALLERY_DELETED_ITEM]({ value }: { value: number }): void {

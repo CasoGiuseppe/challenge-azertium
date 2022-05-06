@@ -6,7 +6,7 @@ import type {
 export const API_DELAY_MAX: number = 2000;
 export const API_DELAY_MIN:number = 500;
 export const BASE_GALLERY_STORE: GalleryStore = {
-  album: 1,
+  album: 0,
   gallery: [],
   deleted: false
 }

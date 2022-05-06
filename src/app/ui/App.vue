@@ -98,6 +98,8 @@
   import { CHANGE_GALLERY_DELETED_ITEM } from "@/gallery/stores/gallery/actions"
   
   import { DICTIONARY_LABELS } from "@/app/helpers/constants"
+  import { loadMoreAlbums } from "@/app/helpers/mixins"
+
   import PictureItem from "@/app/ui/components/picture-item/PictureItem.vue"
   import BaseButton from "@/app/ui/components/base/base-button/BaseButton.vue"
 
@@ -118,7 +120,7 @@
   const setDeletedState = (id) => useGallery[CHANGE_GALLERY_DELETED_ITEM]({ value: id })
   const goToRouterLink = (name) => router.push({ name });
   const showLoadButton = () => useCosmetic[CHANGE_BUTTON_LOAD_STATE]({ value: true })
-  const loadMoreItems = () => {}
+  const loadMoreItems = () => loadMoreAlbums()
 </script>
 
 <style lang="scss" src="@/assets/styles/index.scss" />
