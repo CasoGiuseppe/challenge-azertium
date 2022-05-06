@@ -6,7 +6,10 @@ import {
   CHANGE_GALLERY_LIST,
   CHANGE_GALLERY_DELETED_STATE
 } from "@/gallery/stores/gallery/actions";
-import { GET_GALLERY_ALBUM } from "@/gallery/stores/gallery/getters";
+import {
+  GET_GALLERY_ALBUM,
+  GET_GALLERY_LIST
+} from "@/gallery/stores/gallery/getters";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,13 +24,17 @@ const router = createRouter({
 
       beforeEnter: async (to, from, next) => {
         const galleryStore = useGalleryStore();
+        const galleryExist = galleryStore[GET_GALLERY_LIST].length > 0
 
-        const album = galleryStore[GET_GALLERY_ALBUM]
-        galleryStore[CHANGE_GALLERY_LIST]({
-          value: await galleryServices.getAllGalleryItems(album)
-        });
-
-        next();
+        if (galleryExist) {
+          next()
+        } else {
+          const album = galleryStore[GET_GALLERY_ALBUM]
+          galleryStore[CHANGE_GALLERY_LIST]({
+            value: await galleryServices.getAllGalleryItems(album)
+          });
+          next();
+        }
       }
     },
     {
