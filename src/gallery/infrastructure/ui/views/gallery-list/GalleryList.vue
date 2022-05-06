@@ -15,10 +15,20 @@
         <slot :extra="extra" name="extras" />
       </li>
     </template>
+    <template v-else>
+      <li
+        class="gallery-list__warning"
+        :style="{ transitionDelay: `0s`}"
+      >
+        {{ DICTIONARY_LABELS.error_no_items }}
+      </li>
+    </template>
   </transition-group>
 </template>
   
 <script setup lang='ts'>
+  import { DICTIONARY_LABELS } from "@/app/helpers/constants"
+
   interface Props {
     list: { [key: string]: any }[];
   }

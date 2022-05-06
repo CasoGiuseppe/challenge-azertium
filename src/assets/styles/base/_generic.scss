@@ -51,6 +51,7 @@ html, body {
   }
 
   &__modules {
+    align-items: flex-start;
     display: flex;
     flex: 2;
     overflow: auto;
@@ -62,10 +63,12 @@ html, body {
   }
 
   &__aside {
-    align-items: flex-end;
+    align-items: center;
     display: flex;
     flex: 0 0 calc(var(--dcl-spacing-xbig));
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--dcl-spacing-small);
     order: 2;
 
     background: var(--dcl-c-white);
