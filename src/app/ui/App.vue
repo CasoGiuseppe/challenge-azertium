@@ -26,7 +26,10 @@
     </aside>
 
     <section class="root-layout__modules">
-      <router-view v-slot="{ Component }">
+      <router-view
+        v-slot="{ Component }"
+        @handleObserve="showLoadButton"
+      >
         <component
           :is="Component"
           :list="galleryList"
@@ -58,6 +61,22 @@
         </component>
       </router-view>
     </section>
+
+    <transition
+      appear mode="out-in"
+      name="appear-load-more"
+    >
+      <BaseButton
+        v-if="loadMoreState && $route.meta.path !== 'deleted'"
+        id="loadMore"
+        class="allowLoadMore"
+        @handleClick="loadMoreItems"
+      >
+        <template #label>
+          {{ DICTIONARY_LABELS.cta_load_more }}
+        </template>
+      </BaseButton>
+    </transition>
   </section>
 </template>
 
@@ -65,6 +84,10 @@
   import { computed } from "vue";
   import { storeToRefs } from "pinia";
   import router from "@/app/router";
+
+  import { useCosmeticStore } from "@/app/stores/cosmetics";
+  import { CHANGE_BUTTON_LOAD_STATE } from "@/app/stores/cosmetics/actions";
+  import { GET_BUTTON_LOAD_STATE } from "@/app/stores/cosmetics/getters";
 
   import { useGalleryStore } from "@/gallery/stores/gallery";
   import {
@@ -78,6 +101,10 @@
   import PictureItem from "@/app/ui/components/picture-item/PictureItem.vue"
   import BaseButton from "@/app/ui/components/base/base-button/BaseButton.vue"
 
+  const useCosmetic = useCosmeticStore();
+  const cosmeticRefs = storeToRefs(useCosmetic);
+  const loadMoreState = cosmeticRefs[GET_BUTTON_LOAD_STATE];
+
   const useGallery = useGalleryStore();
   const galleryRefs = storeToRefs(useGallery);
   const galleryDeletedState = computed(() => galleryRefs[GET_GALLERY_DELETED_STATE].value)
@@ -90,6 +117,8 @@
 
   const setDeletedState = (id) => useGallery[CHANGE_GALLERY_DELETED_ITEM]({ value: id })
   const goToRouterLink = (name) => router.push({ name });
+  const showLoadButton = () => useCosmetic[CHANGE_BUTTON_LOAD_STATE]({ value: true })
+  const loadMoreItems = () => {}
 </script>
 
 <style lang="scss" src="@/assets/styles/index.scss" />

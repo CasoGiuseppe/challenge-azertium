@@ -38,6 +38,9 @@
     list: [],
   });
 
+  const emits = defineEmits([ "handleObserve" ]);
+  const handleObserve = (): void => emits("handleObserve");
+
   const endEnterEvent = (e: any): void => {
     e.removeAttribute("style")
     const child = e.children[0];
@@ -49,7 +52,7 @@
       element: child,
       action: (): void => {
         parseInt(index) === props.list.length - 1
-          ? console.log('end')
+          ? handleObserve()
           : null;
       },
     });

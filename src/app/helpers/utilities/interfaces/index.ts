@@ -5,3 +5,7 @@ export interface GalleryStore {
   gallery: Gallery[];
   deleted: boolean | null
 }
+
+export interface CosmeticStore {
+  allowLoadMore: boolean;
+}
