@@ -37,6 +37,7 @@
               :id="extra.id"
               :src="extra.url"
               :isDisabled="extra.deleted"
+              :data-index="extra.id"
             >
               <template #caption>
                 {{ extra.title }}

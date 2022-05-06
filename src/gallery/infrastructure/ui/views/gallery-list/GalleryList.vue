@@ -4,7 +4,7 @@
       class="gallery-list"
       tag="ul"
       name="appear-gallery-item"
-      @before-leave="outLeaveEvent"
+      @after-enter="endEnterEvent"
     >
     <template v-if="list.length > 0">
       <li
@@ -29,7 +29,7 @@
 <script setup lang='ts'>
   import { DICTIONARY_LABELS } from "@/app/helpers/constants"
   import { Observe } from "@/app/helpers/utilities/observer";
-  
+
   interface Props {
     list: { [key: string]: any }[];
   }
@@ -38,6 +38,21 @@
     list: [],
   });
 
-  const outLeaveEvent = (e: any) => e.removeAttribute("style");
+  const endEnterEvent = (e: any): void => {
+    e.removeAttribute("style")
+    const child = e.children[0];
+    if (!child) return false;
+
+    const obs = new Observe();
+    const { index }: { index: number } = child.dataset;
+    obs.create({
+      element: child,
+      action: (): void => {
+        parseInt(index) === props.list.length - 1
+          ? console.log('end')
+          : null;
+      },
+    });
+  }
 </script>
 <style lang="scss" src="./GalleryList.scss" />

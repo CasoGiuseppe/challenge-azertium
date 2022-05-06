@@ -4,6 +4,7 @@
       isDisabled ? 'picture-item--is-disabled' : null,
       'picture-item'
     ]"
+    :data-index="id"
   >
     <img :src="src" />
 
