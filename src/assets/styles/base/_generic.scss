@@ -44,6 +44,8 @@ html, body {
     $name: 'appear-load-more',
     $from: translateY(100%),
     $to: translateY(100%),
+    $duration: .4s,
+    $duration-out: .2s
   );
 
   display: flex;

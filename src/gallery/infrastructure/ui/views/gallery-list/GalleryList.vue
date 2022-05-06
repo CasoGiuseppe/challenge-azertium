@@ -10,7 +10,7 @@
       <li
         v-for="(extra, index) in list"
         :key="extra.id"
-        :style="{ transitionDelay: `${ (index + loadedSize - parseInt(gallerySize.length)) * 0.1 }s`}"
+        :style="{ transitionDelay: `${((index + loadedSize - parseInt(gallerySize.length)) * 0.1) * -1 }s`}"
       >
         <slot :extra="extra" name="extras" />
       </li>
@@ -56,7 +56,7 @@
   const handleObserve = (): void => emits("handleObserve");
 
   const endEnterEvent = (e: any): void => {
-    // e.removeAttribute("style")
+    e.removeAttribute("style")
     const child = e.children[0];
     if (!child) return false;
 
