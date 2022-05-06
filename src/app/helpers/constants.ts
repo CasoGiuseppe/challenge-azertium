@@ -4,3 +4,7 @@ export const BASE_GALLERY_STORE = {
   album: 1,
   gallery: []
 }
+export const DICTIONARY_LABELS: Record<string, string> = {
+  cta_delete: "Delete",
+  cta_restore: "Restore"
+};

@@ -9,11 +9,12 @@ import getters, {
 
 import {
   CHANGE_GALLERY_LIST,
-  CHANGE_GALLERY_ALBUM
+  CHANGE_GALLERY_ALBUM,
+  CHANGE_GALLERY_DELETED_ITEM
 } from "./actions";
 
 export const useGalleryStore = defineStore({
-  id: "doctors",
+  id: "gallery",
   state: () => BASE_GALLERY_STORE,
 
   actions: {
@@ -23,7 +24,13 @@ export const useGalleryStore = defineStore({
 
     [CHANGE_GALLERY_ALBUM](): void {
       this.album + 1
+    },
+
+    [CHANGE_GALLERY_DELETED_ITEM]({ value }: { value: number }): void {
+      const finded: any = this.gallery.find((item: Gallery) => item.id === value)
+      if (finded) finded['deleted'] = !finded['deleted']
     }
+    
   },
 
   getters
