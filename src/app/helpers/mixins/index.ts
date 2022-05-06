@@ -3,7 +3,8 @@ import { galleryServices } from "@/gallery/domain/services/Gallery.services";
 import { useGalleryStore } from "@/gallery/stores/gallery";
 import {
   CHANGE_GALLERY_LIST,
-  CHANGE_GALLERY_ALBUM
+  CHANGE_GALLERY_ALBUM,
+  CHANGE_GALLERY_LOADED_SIZE
 } from "@/gallery/stores/gallery/actions";
 import { GET_GALLERY_ALBUM } from "@/gallery/stores/gallery/getters";
 
@@ -17,7 +18,9 @@ export const loadMoreAlbums = async (): Promise<void> => {
   galleryStore[CHANGE_GALLERY_ALBUM]()
 
   const album = galleryStore[GET_GALLERY_ALBUM]
-  galleryStore[CHANGE_GALLERY_LIST]({ value: await galleryServices.getAllGalleryItems(album) })
+  const response = await galleryServices.getAllGalleryItems(album)
+  galleryStore[CHANGE_GALLERY_LIST]({ value: response})
+  galleryStore[CHANGE_GALLERY_LOADED_SIZE]({ value: response.length })
 
   useCosmetic[CHANGE_BUTTON_LOAD_STATE]({ value: false })
 } 

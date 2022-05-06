@@ -5,14 +5,16 @@ import { BASE_GALLERY_STORE } from "@/app/helpers/constants";
 import getters, {
   GET_GALLERY_LIST,
   GET_GALLERY_ALBUM,
-  GET_GALLERY_DELETED_LIST
+  GET_GALLERY_DELETED_LIST,
+  GET_GALLERY_LOADED_SIZE
 } from "./getters";
 
 import {
   CHANGE_GALLERY_LIST,
   CHANGE_GALLERY_ALBUM,
   CHANGE_GALLERY_DELETED_ITEM,
-  CHANGE_GALLERY_DELETED_STATE
+  CHANGE_GALLERY_DELETED_STATE,
+  CHANGE_GALLERY_LOADED_SIZE
 } from "./actions";
 
 export const useGalleryStore = defineStore({
@@ -35,7 +37,11 @@ export const useGalleryStore = defineStore({
 
     [CHANGE_GALLERY_DELETED_STATE]({ value }: { value: boolean }): void {
       this.deleted = value
-    }
+    },
+
+    [CHANGE_GALLERY_LOADED_SIZE]({ value }: { value: number }): void {
+      this.loadedItems = value
+    },
   },
 
   getters

@@ -8,7 +8,8 @@ export const API_DELAY_MIN:number = 500;
 export const BASE_GALLERY_STORE: GalleryStore = {
   album: 0,
   gallery: [],
-  deleted: false
+  deleted: false,
+  loadedItems: 0,
 }
 export const BASE_COSMETIC_STORE: CosmeticStore = {
   allowLoadMore: false,
