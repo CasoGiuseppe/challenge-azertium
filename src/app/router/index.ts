@@ -1,15 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { galleryServices } from "@/gallery/domain/services/Gallery.services";
+import { loadMoreAlbums } from "@/app/helpers/mixins"
 
 import { useGalleryStore } from "@/gallery/stores/gallery";
-import {
-  CHANGE_GALLERY_LIST,
-  CHANGE_GALLERY_DELETED_STATE
-} from "@/gallery/stores/gallery/actions";
-import {
-  GET_GALLERY_ALBUM,
-  GET_GALLERY_LIST
-} from "@/gallery/stores/gallery/getters";
+import { CHANGE_GALLERY_DELETED_STATE } from "@/gallery/stores/gallery/actions";
+import { GET_GALLERY_LIST } from "@/gallery/stores/gallery/getters";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,10 +23,7 @@ const router = createRouter({
         if (galleryExist) {
           next()
         } else {
-          const album = galleryStore[GET_GALLERY_ALBUM]
-          galleryStore[CHANGE_GALLERY_LIST]({
-            value: await galleryServices.getAllGalleryItems(album)
-          });
+          await loadMoreAlbums()
           next();
         }
       }

@@ -16,7 +16,7 @@
         name="appear-extra-info"
       >
         <span
-          :key="`appear-${id}`"
+          :key="`appear-${id}-${isWarning}`"
           class="base-button__label--is-animated"
         >
           <slot name="label" />
