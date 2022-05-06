@@ -17,31 +17,32 @@ const router = createRouter({
       components: {
         default: () => import("@/gallery/infrastructure/ui/views/gallery-list/GalleryList.vue"),
       },
+      meta: { path: 'root' },
 
       beforeEnter: async (to, from, next) => {
         const galleryStore = useGalleryStore();
 
         const album = galleryStore[GET_GALLERY_ALBUM]
         galleryStore[CHANGE_GALLERY_LIST]({
-          value: await await galleryServices.getAllGalleryItems(album)
+          value: await galleryServices.getAllGalleryItems(album)
         });
-      
+
         next();
+      }
+    },
+    {
+      path: "/deleted",
+      name: "deleted",
+      components: {
+        default: () => import("@/gallery/infrastructure/ui/views/gallery-list/GalleryList.vue")
       },
+      meta: { path: 'deleted' },
 
-      children: [
-        {
-          path: "/deleted",
-          name: "deleted",
-          component: {},
-
-          beforeEnter: async (to, from, next) => {
-            const galleryStore = useGalleryStore();
-            galleryStore[CHANGE_GALLERY_DELETED_STATE]({ value: true });
-            next()
-          }
-        }
-      ]
+      beforeEnter: async (to, from, next) => {
+        const galleryStore = useGalleryStore();
+        galleryStore[CHANGE_GALLERY_DELETED_STATE]({ value: true });
+        next()
+      }
     }
   ],
 });

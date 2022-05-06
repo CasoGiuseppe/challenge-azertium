@@ -9,5 +9,7 @@ export const BASE_GALLERY_STORE: GalleryStore = {
 }
 export const DICTIONARY_LABELS: Record<string, string> = {
   cta_delete: "Delete",
-  cta_restore: "Restore"
+  cta_restore: "Restore",
+  error_no_items: 'No items availables',
+  router_to_home: 'Home'
 };

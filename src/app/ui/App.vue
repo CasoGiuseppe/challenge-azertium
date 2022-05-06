@@ -1,21 +1,36 @@
 <template>
   <section class="root-layout">
     <aside class="root-layout__aside">
-      <router-link :to="{name: 'root'}">
-        home
-      </router-link>
+      <BaseButton
+        id="home"
+        :is-disabled="$route.meta.path === 'root'"
+        is-secondary
+        @handleClick="() => goToRouterLink('root')"
+      >
+        <template #label>
+          {{ DICTIONARY_LABELS.router_to_home }}
+        </template>
+      </BaseButton>
 
-      <router-link :to="{name: 'deleted'}">
-        deleted
-      </router-link>
+      <BaseButton
+        :id="`deleted_items--${galleryDeletedSize.length}`"
+        :is-disabled="galleryDeletedSize.length === 0"
+        is-secondary
+        is-warning
+        @handleClick="() => goToRouterLink('deleted')"
+      >
+        <template #label>
+          {{ galleryDeletedSize.length }}
+        </template>
+      </BaseButton>
     </aside>
 
     <section class="root-layout__modules">
-      {{ }}
       <router-view v-slot="{ Component }">
         <component
           :is="Component"
           :list="galleryList"
+          :key="$route.meta.path"
         >
           <template #extras="{ extra }">
             <PictureItem
@@ -48,6 +63,8 @@
 <script setup lang="ts">
   import { computed } from "vue";
   import { storeToRefs } from "pinia";
+  import router from "@/app/router";
+
   import { useGalleryStore } from "@/gallery/stores/gallery";
   import {
     GET_GALLERY_LIST,
@@ -63,6 +80,7 @@
   const useGallery = useGalleryStore();
   const galleryRefs = storeToRefs(useGallery);
   const galleryDeletedState = computed(() => galleryRefs[GET_GALLERY_DELETED_STATE].value)
+  const galleryDeletedSize = computed(() => galleryRefs[GET_GALLERY_DELETED_LIST].value)
   const galleryList = computed(() => {
     return galleryDeletedState.value
       ? galleryRefs[GET_GALLERY_DELETED_LIST].value
@@ -70,6 +88,7 @@
   });
 
   const setDeletedState = (id) => useGallery[CHANGE_GALLERY_DELETED_ITEM]({ value: id })
+  const goToRouterLink = (name) => router.push({ name });
 </script>
 
 <style lang="scss" src="@/assets/styles/index.scss" />
