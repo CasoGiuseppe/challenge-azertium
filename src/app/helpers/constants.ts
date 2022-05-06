@@ -5,5 +5,6 @@ export const BASE_GALLERY_STORE = {
   gallery: []
 }
 export const DICTIONARY_LABELS: Record<string, string> = {
-  cta_delete: "delete"
+  cta_delete: "Delete",
+  cta_restore: "Restore"
 };

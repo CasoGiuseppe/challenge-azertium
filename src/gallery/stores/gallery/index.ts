@@ -28,8 +28,9 @@ export const useGalleryStore = defineStore({
 
     [CHANGE_GALLERY_DELETED_ITEM]({ value }: { value: number }): void {
       const finded: any = this.gallery.find((item: Gallery) => item.id === value)
-      if (finded) finded['deleted'] = true
+      if (finded) finded['deleted'] = !finded['deleted']
     }
+    
   },
 
   getters

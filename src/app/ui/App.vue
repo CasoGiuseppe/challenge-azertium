@@ -15,13 +15,20 @@
               :id="extra.id"
               :src="extra.url"
               :isDisabled="extra.deleted"
-              @handleClick="setDeletedState"
             >
               <template #caption>
                 {{ extra.title }}
               </template>
               <template #action>
-                {{ DICTIONARY_LABELS.cta_delete }}
+                <BaseButton
+                  :id="extra.id"
+                  :is-warning="!extra.deleted"
+                  @handleClick="setDeletedState"
+                >
+                  <template #label>
+                    {{ !extra.deleted ? DICTIONARY_LABELS.cta_delete :  DICTIONARY_LABELS.cta_restore}}
+                  </template>
+                </BaseButton>
               </template>
             </PictureItem>
           </template>
@@ -39,12 +46,13 @@
 
   import { DICTIONARY_LABELS } from "@/app/helpers/constants"
   import PictureItem from "@/app/ui/components/picture-item/PictureItem.vue"
+  import BaseButton from "@/app/ui/components/base/base-button/BaseButton.vue"
 
   const useGallery = useGalleryStore();
   const galleryRefs = storeToRefs(useGallery);
   const galleryList = galleryRefs[GET_GALLERY_LIST];
 
-  const setDeletedState = (id) => useGallery[CHANGE_GALLERY_DELETED_ITEM]({ value : id })
+  const setDeletedState = (id) => useGallery[CHANGE_GALLERY_DELETED_ITEM]({ value: id })
 </script>
 
 <style lang="scss" src="@/assets/styles/index.scss" />
