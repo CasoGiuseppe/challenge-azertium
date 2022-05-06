@@ -5,12 +5,13 @@
       tag="ul"
       name="appear-gallery-item"
       @after-enter="endEnterEvent"
+      @before-leave="outLeaveEvent"
     >
     <template v-if="list.length > 0">
       <li
         v-for="(extra, index) in list"
-        :key="extra.id"
-        :style="{ transitionDelay: `${((index + loadedSize - parseInt(gallerySize.length)) * 0.1) * -1 }s`}"
+        :key="`${type}--${extra.id}`"
+        :style="{ transitionDelay: `${parseInt(extra.index) * 0.02}s` }"
       >
         <slot :extra="extra" name="extras" />
       </li>
@@ -41,10 +42,12 @@
 
   interface Props {
     list: { [key: string]: any }[];
+    type?: string
   }
 
   const props = withDefaults(defineProps<Props>(), {
     list: [],
+    type: ''
   });
 
   const useGallery = useGalleryStore();
@@ -71,5 +74,7 @@
       },
     });
   }
+
+  const outLeaveEvent = (e: any) => e.removeAttribute("style")
 </script>
 <style lang="scss" src="./GalleryList.scss" />

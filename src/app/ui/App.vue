@@ -1,5 +1,9 @@
 <template>
-  <section class="root-layout">
+  <section
+    :class="[
+      isLoading ? 'is-loading is-blocked' : null,
+      'root-layout'
+    ]">
     <aside class="root-layout__aside">
       <BaseButton
         id="home"
@@ -34,6 +38,7 @@
           :is="Component"
           :list="galleryList"
           :key="$route.meta.path"
+          :type="$route.meta.path"
         >
           <template #extras="{ extra }">
             <PictureItem
@@ -87,7 +92,10 @@
 
   import { useCosmeticStore } from "@/app/stores/cosmetics";
   import { CHANGE_BUTTON_LOAD_STATE } from "@/app/stores/cosmetics/actions";
-  import { GET_BUTTON_LOAD_STATE } from "@/app/stores/cosmetics/getters";
+  import {
+    GET_BUTTON_LOAD_STATE,
+    GET_LOADING_STATE
+  } from "@/app/stores/cosmetics/getters";
 
   import { useGalleryStore } from "@/gallery/stores/gallery";
   import {
@@ -106,16 +114,13 @@
   const useCosmetic = useCosmeticStore();
   const cosmeticRefs = storeToRefs(useCosmetic);
   const loadMoreState = cosmeticRefs[GET_BUTTON_LOAD_STATE];
+  const isLoading = cosmeticRefs[GET_LOADING_STATE];
 
   const useGallery = useGalleryStore();
   const galleryRefs = storeToRefs(useGallery);
   const galleryDeletedState = computed(() => galleryRefs[GET_GALLERY_DELETED_STATE].value)
   const galleryDeletedSize = computed(() => galleryRefs[GET_GALLERY_DELETED_LIST].value)
-  const galleryList = computed(() => {
-    return galleryDeletedState.value
-      ? galleryRefs[GET_GALLERY_DELETED_LIST].value
-      : galleryRefs[GET_GALLERY_LIST].value
-  });
+  const galleryList = computed(() => galleryRefs[GET_GALLERY_LIST].value);
 
   const setDeletedState = (id) => useGallery[CHANGE_GALLERY_DELETED_ITEM]({ value: id })
   const goToRouterLink = (name) => router.push({ name });
