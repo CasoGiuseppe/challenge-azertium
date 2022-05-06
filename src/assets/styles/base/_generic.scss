@@ -91,8 +91,33 @@ html, body {
   }
 }
 
+.is-blocked {
+  max-height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    @include keyAnimation(appear) {
+      0% { background: rgba(#000, 0); }
+      100% { background: rgba(#000, .8); }
+    };
+
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 4;
+
+    content: '';
+
+    animation-name: appear;
+    animation-duration: .6s;
+    animation-timing-function: var(--dcl-ease-out);
+    animation-fill-mode: forwards;
+  }
+}
+
 .is-loading {
-  @include spinner(60, 15, var(--dcl-c-blue-300));
+  @include spinner(60, 15, var(--dcl-c-white));
 
   animation-name: loading;
   animation-duration: .8s;

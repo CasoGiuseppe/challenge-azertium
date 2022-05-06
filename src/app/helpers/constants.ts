@@ -13,6 +13,7 @@ export const BASE_GALLERY_STORE: GalleryStore = {
 }
 export const BASE_COSMETIC_STORE: CosmeticStore = {
   allowLoadMore: false,
+  isLoading: false
 };
 export const DICTIONARY_LABELS: Record<string, string> = {
   cta_delete: "Delete",

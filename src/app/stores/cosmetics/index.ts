@@ -6,6 +6,7 @@ import getters, {
 } from "./getters";
 
 import {
+  CHANGE_LOADING_STATE,
   CHANGE_BUTTON_LOAD_STATE,
 } from "./actions";
 
@@ -14,6 +15,10 @@ export const useCosmeticStore = defineStore({
   state: () => BASE_COSMETIC_STORE,
 
   actions: {
+    [CHANGE_LOADING_STATE]({ value }: { value: boolean }): void {
+      this.isLoading = value;
+    },
+    
     [CHANGE_BUTTON_LOAD_STATE]({ value }: { value: boolean }): void {
       this.allowLoadMore = value;
     },
