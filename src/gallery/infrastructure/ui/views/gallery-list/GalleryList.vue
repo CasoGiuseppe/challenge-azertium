@@ -28,7 +28,8 @@
   
 <script setup lang='ts'>
   import { DICTIONARY_LABELS } from "@/app/helpers/constants"
-
+  import { Observe } from "@/app/helpers/utilities/observer";
+  
   interface Props {
     list: { [key: string]: any }[];
   }
