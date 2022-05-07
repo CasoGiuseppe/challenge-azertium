@@ -17,6 +17,7 @@ const mirage = new Server({
   },
 
   routes() {
+    this.passthrough("image/***")
     this.namespace = import.meta.env.VITE_APP_API_URL;
 
     // get all gallery items by album id
@@ -25,5 +26,8 @@ const mirage = new Server({
     },
       { timing: randomDelay() }
     );
+
+    this.passthrough();
+    this.passthrough("image/***")
   },
 });

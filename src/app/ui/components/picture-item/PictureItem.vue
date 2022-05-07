@@ -6,7 +6,11 @@
     ]"
     :data-index="id"
   >
-    <!-- <img :src="src" /> -->
+    <img
+      data-image
+      :data-src="src"
+      loading="lazy"
+    />
 
     <figcaption
       v-if="$slots['caption']"

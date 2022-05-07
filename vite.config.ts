@@ -18,4 +18,14 @@ export default defineConfig({
       },
     },
   },
+  server: {
+    proxy: {
+      "/image": {
+        target: 'https://via.placeholder.com/',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/image/, ""),
+      },
+    },
+  },
 });

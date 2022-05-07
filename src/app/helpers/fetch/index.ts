@@ -1,7 +1,10 @@
 export const fetchImage = async ({ url }: {url: string}) => {
-  let res = await fetch(url, {
-    method: "GET"
-  })
+  const hearder = {
+      'method': 'GET',
+      'Content-Type': 'application/json;charset=UTF-8',
+      'Access-Control-Allow-Origin': '*'
+  }
+  let res = await fetch(url, hearder)
 
   if (res.status === 200) {
     const blob = await res.blob()
@@ -9,7 +12,9 @@ export const fetchImage = async ({ url }: {url: string}) => {
 
     const img = document.createElement('img')
     img.src = objectURL
-
-    console.log(img)
+    img.onload = function() {
+      console.log('load')
+    }
+    return img
   }
 }
