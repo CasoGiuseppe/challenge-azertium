@@ -24,8 +24,9 @@
 
       animation-name: appear;
       animation-duration: .6s;
-      animation-timing-function: --sm-ease-out;
+      animation-timing-function: --dlc-ease-out;
       animation-fill-mode: forwards;
+      animation-delay: 4s
     }
   }
 
@@ -55,10 +56,22 @@
     right: var(--dcl-spacing-small, 4px);
   }
 
-  > img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
+  > [data-image] {
+    &[src] {
+      @include keyAnimation(lazy) {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      };
+
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+
+      animation-name: lazy;
+      animation-duration: 2s;
+      animation-timing-function: var(--dcl-ease-out);
+      animation-fill-mode: forwards;
+    }
   }
 
   &:hover {

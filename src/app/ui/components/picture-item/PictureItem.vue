@@ -1,5 +1,6 @@
 <template>
   <figure
+    ref="root"
     :class="[
       isDisabled ? 'picture-item--is-disabled' : null,
       'picture-item'
@@ -40,6 +41,5 @@
     src: null,
     isDisabled: false
   });
-  
 </script>
 <style lang="scss" src="./PictureItem.scss" />

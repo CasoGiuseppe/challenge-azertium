@@ -30,7 +30,6 @@
 <script setup lang='ts'>
   import { computed } from "vue";
   import { storeToRefs } from "pinia";
-  import { fetchImage } from "@/app/helpers/fetch"
 
   import { DICTIONARY_LABELS } from "@/app/helpers/constants";
   import { Observe } from "@/app/helpers/utilities/observer";

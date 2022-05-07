@@ -15,13 +15,13 @@
 
   .#{$name}-leave-active,
   .#{$name}-enter-active {
-    transition: transform $duration var(--sm-ease-out, linear) $delay,
-                opacity $duration var(--sm-ease-out, linear) $delay;
+    transition: transform $duration var(--dlc-ease-out, linear) $delay,
+                opacity $duration var(--dlc-ease-out, linear) $delay;
   }
 
   .#{$name}-leave-active {
     transition-duration: $duration-out;
-    transition-timing-function: var(--sm-ease-out, linear)
+    transition-timing-function: var(--dlc-ease-out, linear)
   }
 
   .#{$name}-leave-to {
