@@ -64,10 +64,13 @@
     if (!child) return false;
 
     const obs = new Observe();
-    const { index }: { index: number } = child.dataset;
+    const { index, url }: { index: number, url: string } = child.dataset;
     obs.create({
       element: child,
-      action: (): void => {
+      action: async (): void => {
+        const image = child.querySelector('[data-image]')
+        const { src } = image.dataset
+        image.src = src
         parseInt(index) === props.list.length - 1
           ? handleObserve()
           : null;

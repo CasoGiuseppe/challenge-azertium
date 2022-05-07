@@ -74,7 +74,7 @@ html, body {
     align-items: center;
     display: flex;
     flex: 0 0 calc(var(--dcl-spacing-xbig));
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     padding: var(--dcl-spacing-small);
     order: 2;
@@ -84,6 +84,7 @@ html, body {
 
     @include breakpoint('tablet-pt') {
       flex: 0 0 calc(var(--dcl-spacing-xbig) * 2);
+      flex-direction: column;
       order: 1;
 
       box-shadow: 2px 0px 3px 0px rgba(0,0,0,0.05);
