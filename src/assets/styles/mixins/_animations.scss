@@ -41,12 +41,12 @@
   }
 }
 
-@mixin spinner($size, $borderSize, $color, $message: '') {
+@mixin spinner($size, $borderSize, $color, $message: '', $position: fixed) {
   &::after {
     display: block;
     height: #{$size * 1px};
     left: 50%;
-    position: fixed;
+    position: $position;
     width: #{$size * 1px};
     top: 50%;
     z-index: 4;

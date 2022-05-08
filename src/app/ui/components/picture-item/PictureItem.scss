@@ -30,6 +30,15 @@
     }
   }
 
+  &--is-loading {
+    @include spinner(25, 5, var(--dcl-c-blue-300), $position: absolute);
+
+    animation-name: loading;
+    animation-duration: .8s;
+    animation-timing-function: var(--dcl-ease-out);
+    animation-fill-mode: forwards;
+  }
+
   &__caption {
     @include text--paragraph;
 
@@ -57,18 +66,23 @@
   }
 
   > [data-image] {
+    opacity: 0;
     &[src] {
+      
+
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+
+    &.is--load-end {
       @include keyAnimation(lazy) {
         0% { opacity: 0; }
         100% { opacity: 1; }
       };
 
-      height: 100%;
-      width: 100%;
-      object-fit: contain;
-
       animation-name: lazy;
-      animation-duration: 2s;
+      animation-duration: 3s;
       animation-timing-function: var(--dcl-ease-out);
       animation-fill-mode: forwards;
     }
