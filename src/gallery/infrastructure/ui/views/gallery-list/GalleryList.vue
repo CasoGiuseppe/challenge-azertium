@@ -68,9 +68,6 @@
     obs.create({
       element: child,
       action: async (): void => {
-        const image = child.querySelector('[data-image]')
-        const { src } = image.dataset
-        image.src = src
         parseInt(index) === props.list.length - 1
           ? handleObserve()
           : null;
